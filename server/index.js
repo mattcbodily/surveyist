@@ -3,6 +3,7 @@ const express = require('express'),
       massive = require('massive'),
       session = require('express-session'),
       {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env,
+      authCtrl = require('./controllers/authController'),
       app = express();
 
 app.use(express.json());
@@ -20,5 +21,10 @@ massive({
     app.set('db', db)
     console.log('db connected');
 })
+
+//auth endpoints
+app.post('/api/register', authCtrl.register);
+app.post('/api/login', authCtrl.login);
+app.get('/api/logout', authCtrl.logout);
 
 app.listen(SERVER_PORT, console.log(`Surveying on ${SERVER_PORT}`));
