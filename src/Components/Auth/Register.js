@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {Link} from 'react-router-dom';
 
 export default props => {
     let [username, setUsername] = useState(''),
@@ -21,7 +22,7 @@ export default props => {
                 <input type='password' value={verPassword} onChange={e => setVerPassword(e.target.value)}/>
                 <button>Register</button>
             </form>
-            <p>Have an account? Sign in here</p>
+            <p>Have an account? <Link to='/login'>Sign in here</Link></p>
         </section>
     )
 }
