@@ -1,17 +1,20 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+import {UserContext} from '../../App';
 import './Auth.scss';
 
 export default props => {
     let [email, setEmail] = useState(''),
         [password, setPassword] = useState('');
 
+    const {setUser} = useContext(UserContext);
+
     const login = (e) => {
         e.preventDefault();
         axios.post('/api/login', {email, password})
         .then(res => {
-            //use context api here
+            setUser(res.data);
             props.history.push('/survey-dash');
         })
         .catch(err => console.log(err));
