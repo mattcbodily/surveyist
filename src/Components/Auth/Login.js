@@ -12,6 +12,7 @@ export default props => {
         axios.post('/api/login', {email, password})
         .then(res => {
             //use context api here
+            props.history.push('/survey-dash');
         })
         .catch(err => console.log(err));
     }
