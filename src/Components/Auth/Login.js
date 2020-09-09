@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+import './Auth.scss';
 
 export default props => {
     let [email, setEmail] = useState(''),
@@ -16,13 +17,15 @@ export default props => {
     }
 
     return (
-        <section>
+        <section className='auth'>
             <h3>Sign In</h3>
             <form>
                 <label>Email</label>
                 <input value={email} onChange={e => setEmail(e.target.value)}/>
+                <br />
                 <label>Password</label>
                 <input type='password' value={password} onChange={e => setPassword(e.target.value)}/>
+                <br />
                 <button onClick={e => login(e)}>Log In</button>
             </form>
             <p>Don't have an account? <Link to='/register'>Sign up here</Link></p>
